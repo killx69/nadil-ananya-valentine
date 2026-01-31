@@ -1,6 +1,6 @@
 :root{
-  --bg1:#ffdde1;
-  --bg2:#ee9ca7;
+  --bg1:#cfe9ff;   /* light blue */
+  --bg2:#6fa8dc;   /* deeper blue */
   --card:#ffffffcc;
   --text:#1f1f1f;
   --shadow: 0 20px 60px rgba(0,0,0,.18);
