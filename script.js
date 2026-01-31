@@ -23,15 +23,15 @@ function dodgeNo() {
 
   noBtn.style.transform = `translate(${x}px, ${y}px) scale(${Math.max(0.72, 1 - noCount * 0.03)})`;
 
-  if (noCount === 1) hint.textContent = "No button: ‘I’m nervous’ 🫣";
-  if (noCount === 3) hint.textContent = "Ananya… why you chasing it 😭";
-  if (noCount === 5) hint.textContent = "Plot twist: the ‘Yes’ button is the correct answer ✅";
-  if (noCount === 8) hint.textContent = "Okay okay, the ‘No’ button is officially retiring 🏃‍♂️💨";
+  if (noCount === 1) hint.textContent = "TRY AGAIN 😭😭😭";
+  if (noCount === 4) hint.textContent = "AHHH YOU WANT TO PRESS NO THAT BADLY 💀💀💀";
+  if (noCount === 6) hint.textContent = "YOU SUCK AT THIS 🤣🤣🤣";
+  if (noCount === 9) hint.textContent = "ITS FUNNY HOW YOUR CHASING THE BUTTON NOW 😭😭💀💀";
 
   if (noCount >= 12) {
     noBtn.disabled = true;
     noBtn.style.opacity = "0.5";
-    hint.textContent = "‘No’ has left the chat. Please select ‘Yes’ 💖";
+    hint.textContent = "JUST PRESS THE YES BUTTON 🤦🏻‍♂️";
   }
 }
 
@@ -40,7 +40,7 @@ noBtn.addEventListener("touchstart", (e) => { e.preventDefault(); dodgeNo(); }, 
 noBtn.addEventListener("click", dodgeNo);
 
 yesBtn.addEventListener("click", () => {
-  question.textContent = "YAYYY!! 💞";
+  question.textContent = "FINALLY!!! 💞";
   sub.textContent = "Ananya is officially Nadil’s Valentine 😌💘";
   hint.textContent = "Screenshot this and send it back to Nadil 😭📸";
 
@@ -98,3 +98,4 @@ function popConfetti() {
 
   setTimeout(() => (confetti.innerHTML = ""), 4500);
 }
+
