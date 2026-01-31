@@ -11,11 +11,11 @@ let noCount = 0;
 function dodgeNo() {
   noCount++;
 
-  // Make YES grow a lot
+  // YES button grows aggressively
   const yesScale = 1 + Math.min(noCount, 20) * 0.1;
   yesBtn.style.transform = `scale(${yesScale})`;
 
-  // Make NO move randomly (within the card)
+  // NO button moves away
   const cardRect = document.getElementById("card").getBoundingClientRect();
   const maxX = Math.max(0, cardRect.width - 140);
   const maxY = Math.max(0, 120);
@@ -23,15 +23,17 @@ function dodgeNo() {
   const x = Math.floor(Math.random() * maxX) - maxX / 2;
   const y = Math.floor(Math.random() * maxY) - maxY / 3;
 
-  noBtn.style.transform = `translate(${x}px, ${y}px) scale(${Math.max(0.72, 1 - noCount * 0.03)})`;
+  noBtn.style.transform = `translate(${x}px, ${y}px) scale(${Math.max(
+    0.72,
+    1 - noCount * 0.03
+  )})`;
 
-  // Your custom bully/funny messages
+  // Bully-funny messages
   if (noCount === 1) hint.textContent = "TRY AGAIN 😭😭😭";
   if (noCount === 4) hint.textContent = "AHHH YOU WANT TO PRESS NO THAT BADLY 💀💀💀";
   if (noCount === 6) hint.textContent = "YOU SUCK AT THIS 🤣🤣🤣";
-  if (noCount === 9) hint.textContent = "ITS FUNNY HOW YOUR CHASING THE BUTTON NOW 😭😭💀💀";
+  if (noCount === 9) hint.textContent = "ITS FUNNY HOW YOU’RE CHASING THE BUTTON NOW 😭💀";
 
-  // After enough tries, disable NO
   if (noCount >= 12) {
     noBtn.disabled = true;
     noBtn.style.opacity = "0.5";
@@ -39,7 +41,7 @@ function dodgeNo() {
   }
 }
 
-// Mobile + desktop triggers for NO
+// NO button events
 noBtn.addEventListener("mouseenter", dodgeNo);
 noBtn.addEventListener(
   "touchstart",
@@ -51,13 +53,10 @@ noBtn.addEventListener(
 );
 noBtn.addEventListener("click", dodgeNo);
 
-// YES click = success screen
+// YES click
 yesBtn.addEventListener("click", () => {
   question.textContent = "FINALLY!!! 💞";
 
-  // If you added your photo, keep this line as-is but ensure filename matches.
-  // Example: <img src="us.jpg.jpeg" ...>
-  // If you don't want the photo, you can remove the <img> part.
   sub.innerHTML = `
     Ananya is officially Nadil’s Valentine 😌💘<br><br>
     <img src="us.jpg"
@@ -69,16 +68,17 @@ yesBtn.addEventListener("click", () => {
          ">
   `;
 
-  hint.textContent = "Pick one 😌👇";
+  hint.textContent = "Now do the right thing 😌👇";
 
-  // --- WhatsApp + copy + custom reply UI ---
+  // Only TWO buttons now
   btnRow.innerHTML = `
-    <button class="btn yes success" id="waPresetBtn">Send preset to Nadil on WhatsApp 💬</button>
-    <button class="btn no success" id="copyPresetBtn">Copy preset reply 📋</button>
+    <button class="btn yes success" id="waPresetBtn">
+      Send preset to Nadil on WhatsApp 💬
+    </button>
 
     <div style="width:100%; margin-top:14px; text-align:left;">
       <div style="font-weight:800; font-size:16px; margin-bottom:8px;">
-        Or write your own reply:
+        Or send your own reply:
       </div>
 
       <textarea id="customMsg"
@@ -94,79 +94,46 @@ yesBtn.addEventListener("click", () => {
           outline:none;
         "></textarea>
 
-      <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
-        <button class="btn yes" id="waCustomBtn">Send your reply on WhatsApp ✍️</button>
-        <button class="btn no" id="copyCustomBtn">Copy your reply 📎</button>
-      </div>
+      <button class="btn yes" id="waCustomBtn" style="margin-top:10px;">
+        Send your own reply on WhatsApp ✍️
+      </button>
     </div>
   `;
 
   popConfetti();
 
-  // ✅ Your exact preset message
-  const presetMsg = "yes, now I will be your valentine. Also, you are better than me in everything.";
+  // Preset message (exactly what you wanted)
+  const presetMsg =
+    "Yes,I will be your valentine Nadil 💗💗💗. Also just letting you know that you are better than me in everything.";
 
-  // ✅ Your Sri Lanka WhatsApp number in international format (94 + drop 0)
+  // Your Sri Lanka WhatsApp number (94 + drop leading 0)
   const nadilWhatsAppNumber = "94762171117";
 
-  const waPresetBtn = document.getElementById("waPresetBtn");
-  const copyPresetBtn = document.getElementById("copyPresetBtn");
-  const waCustomBtn = document.getElementById("waCustomBtn");
-  const copyCustomBtn = document.getElementById("copyCustomBtn");
-  const customMsg = document.getElementById("customMsg");
-
-  function openWhatsAppWithMessage(message) {
+  function openWhatsApp(message) {
     const encoded = encodeURIComponent(message);
     const url = `https://wa.me/${nadilWhatsAppNumber}?text=${encoded}`;
     window.open(url, "_blank");
   }
 
-  // 1) Send preset to WhatsApp
-  waPresetBtn.addEventListener("click", () => {
-    openWhatsAppWithMessage(presetMsg);
-  });
+  // Preset WhatsApp button
+  document
+    .getElementById("waPresetBtn")
+    .addEventListener("click", () => openWhatsApp(presetMsg));
 
-  // 2) Copy preset
-  copyPresetBtn.addEventListener("click", async () => {
-    try {
-      await navigator.clipboard.writeText(presetMsg);
-      copyPresetBtn.textContent = "Copied ✅";
-      setTimeout(() => (copyPresetBtn.textContent = "Copy preset reply 📋"), 1400);
-    } catch {
-      copyPresetBtn.textContent = "Copy failed 😭";
-      setTimeout(() => (copyPresetBtn.textContent = "Copy preset reply 📋"), 1400);
-    }
-  });
-
-  // 3) Send custom reply on WhatsApp
-  waCustomBtn.addEventListener("click", () => {
-    const msg = customMsg.value.trim();
-    if (!msg) {
-      customMsg.focus();
-      return;
-    }
-    openWhatsAppWithMessage(msg);
-  });
-
-  // 4) Copy custom reply
-  copyCustomBtn.addEventListener("click", async () => {
-    const msg = customMsg.value.trim();
-    if (!msg) {
-      customMsg.focus();
-      return;
-    }
-    try {
-      await navigator.clipboard.writeText(msg);
-      copyCustomBtn.textContent = "Copied ✅";
-      setTimeout(() => (copyCustomBtn.textContent = "Copy your reply 📎"), 1400);
-    } catch {
-      copyCustomBtn.textContent = "Copy failed 😭";
-      setTimeout(() => (copyCustomBtn.textContent = "Copy your reply 📎"), 1400);
-    }
-  });
+  // Custom WhatsApp button
+  document
+    .getElementById("waCustomBtn")
+    .addEventListener("click", () => {
+      const msg = document.getElementById("customMsg").value.trim();
+      if (!msg) {
+        document.getElementById("customMsg").focus();
+        return;
+      }
+      openWhatsApp(msg);
+    });
 });
 
-// Confetti animation
+// Confetti
 function popConfetti() {
   confetti.innerHTML = "";
   const pieces = 120;
