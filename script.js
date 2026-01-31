@@ -11,7 +11,7 @@ let noCount = 0;
 function dodgeNo() {
   noCount++;
 
-  const yesScale = 1 + Math.min(noCount, 12) * 0.06;
+  const yesScale = 1 + Math.min(noCount, 20) * 0.1;
   yesBtn.style.transform = `scale(${yesScale})`;
 
   const cardRect = document.getElementById("card").getBoundingClientRect();
@@ -98,4 +98,5 @@ function popConfetti() {
 
   setTimeout(() => (confetti.innerHTML = ""), 4500);
 }
+
 
