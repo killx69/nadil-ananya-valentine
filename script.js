@@ -58,7 +58,9 @@ yesBtn.addEventListener("click", () => {
   question.textContent = "FINALLY!!! 💞";
 
   sub.innerHTML = `
-    Ananya is officially Nadil’s Valentine 😌💘<br><br>
+    Thank you for saying YES 💀.<br><br>
+    I added picture of us thought it was cute ❤️.<br><br>
+    
     <img src="us.jpg"
          style="
            max-width:90%;
@@ -68,12 +70,12 @@ yesBtn.addEventListener("click", () => {
          ">
   `;
 
-  hint.textContent = "Now do the right thing 😌👇";
+  hint.textContent = "Let me know your reply 👍";
 
   // Only TWO buttons now
   btnRow.innerHTML = `
     <button class="btn yes success" id="waPresetBtn">
-      Send preset to Nadil on WhatsApp 💬
+      Send a automated reply to Nadil on WhatsApp
     </button>
 
     <div style="width:100%; margin-top:14px; text-align:left;">
@@ -160,6 +162,7 @@ function popConfetti() {
 
   setTimeout(() => (confetti.innerHTML = ""), 4500);
 }
+
 
 
 
