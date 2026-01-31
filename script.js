@@ -58,8 +58,8 @@ yesBtn.addEventListener("click", () => {
   question.textContent = "FINALLY!!! 💞";
 
   sub.innerHTML = `
-    Thank you for saying YES 💀.<br><br>
-    I added picture of us thought it was cute ❤️.<br><br>
+    Thank you for saying YES 💀.<br>
+    I added picture of us, thought it was cute ❤️.<br><br>
     
     <img src="us.jpg"
          style="
@@ -162,6 +162,7 @@ function popConfetti() {
 
   setTimeout(() => (confetti.innerHTML = ""), 4500);
 }
+
 
 
 
