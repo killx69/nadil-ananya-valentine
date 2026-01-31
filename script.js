@@ -75,7 +75,7 @@ yesBtn.addEventListener("click", () => {
   // Only TWO buttons now
   btnRow.innerHTML = `
     <button class="btn yes success" id="waPresetBtn">
-      Send a automated reply to Nadil on WhatsApp
+      Send a automated reply to Nadil on WhatsApp 💬
     </button>
 
     <div style="width:100%; margin-top:14px; text-align:left;">
@@ -97,7 +97,7 @@ yesBtn.addEventListener("click", () => {
         "></textarea>
 
       <button class="btn yes" id="waCustomBtn" style="margin-top:10px;">
-        Send your own reply on WhatsApp ✍️
+        Send your own reply to Nadil on WhatsApp ✍️
       </button>
     </div>
   `;
@@ -162,6 +162,7 @@ function popConfetti() {
 
   setTimeout(() => (confetti.innerHTML = ""), 4500);
 }
+
 
 
 
