@@ -41,7 +41,17 @@ noBtn.addEventListener("click", dodgeNo);
 
 yesBtn.addEventListener("click", () => {
   question.textContent = "FINALLY!!! 💞";
-  sub.textContent = "Ananya is officially Nadil’s Valentine 😌💘";
+ sub.innerHTML = `
+  Ananya is officially Nadil’s Valentine 😌💘<br><br>
+  <img src="us.jpg" 
+       style="
+         max-width:90%;
+         border-radius:18px;
+         box-shadow:0 12px 30px rgba(0,0,0,.35);
+         animation: fadeIn 0.8s ease-in-out;
+       ">
+`;
+
   hint.textContent = "Screenshot this and send it back to Nadil 😭📸";
 
   btnRow.innerHTML = `
@@ -98,5 +108,6 @@ function popConfetti() {
 
   setTimeout(() => (confetti.innerHTML = ""), 4500);
 }
+
 
 
