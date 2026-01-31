@@ -104,7 +104,7 @@ yesBtn.addEventListener("click", () => {
 
   // Preset message (exactly what you wanted)
   const presetMsg =
-    "Yes,I will be your valentine Nadil 💗💗💗. Also just letting you know that you are better than me in everything.";
+    "Yes, I will be your valentine Nadil 💗💗💗. Also just letting you know that you are better than me in everything.";
 
   // Your Sri Lanka WhatsApp number (94 + drop leading 0)
   const nadilWhatsAppNumber = "94762171117";
@@ -160,6 +160,7 @@ function popConfetti() {
 
   setTimeout(() => (confetti.innerHTML = ""), 4500);
 }
+
 
 
 
