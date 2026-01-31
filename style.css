@@ -77,7 +77,7 @@ h1{
 .btn:active{ transform: translateY(2px); box-shadow: 0 6px 14px rgba(0,0,0,.15); }
 
 .yes{
-  background: linear-gradient(135deg, #ff4d6d, #ff8fab);
+  background: linear-gradient(135deg, #4facfe, #00c6ff);
   color:white;
 }
 
